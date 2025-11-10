@@ -141,15 +141,29 @@ async def decide(request: dict):
 
 # ========== 模块化路由注册 ==========
 
-def register_routes():
+def register_routes(app: FastAPI):
     """注册所有模块的路由"""
-    # R1 控制面（身份、审计、计费）
-    # 可在此处注册 ControlPlane API
-    logger.info("Routes registered successfully")
+    # R2 业务面 - InfoChain
+    from src.r2_business_plane.infochain.api import router as infochain_router
+    app.include_router(infochain_router)
+
+    # R2 业务面 - ChainGraph
+    from src.r2_business_plane.chaingraph.api import router as chaingraph_router
+    app.include_router(chaingraph_router)
+
+    # R2 业务面 - BriefEngine
+    from src.r2_business_plane.briefengine.api import router as briefengine_router
+    app.include_router(briefengine_router)
+
+    # R1 控制面（后续）
+    # from src.r1_control_plane import router as control_plane_router
+    # app.include_router(control_plane_router)
+
+    logger.info("All routes registered successfully")
 
 
 # 应用启动时注册路由
-register_routes()
+register_routes(app)
 
 
 # ========== 应用入口 ==========

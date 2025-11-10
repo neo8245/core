@@ -9,5 +9,7 @@ BriefEngine - 智能简报引擎
 
 from .generator import BriefGenerator
 from .scheduler import BriefScheduler
+from .service import BriefEngineService
+from .api import router
 
-__all__ = ["BriefGenerator", "BriefScheduler"]
+__all__ = ["BriefGenerator", "BriefScheduler", "BriefEngineService", "router"]

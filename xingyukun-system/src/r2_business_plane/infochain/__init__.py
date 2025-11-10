@@ -10,5 +10,7 @@ InfoChain - 信息链追踪系统
 
 from .collector import EventCollector
 from .event_chain import EventChainBuilder
+from .service import InfoChainService
+from .api import router
 
-__all__ = ["EventCollector", "EventChainBuilder"]
+__all__ = ["EventCollector", "EventChainBuilder", "InfoChainService", "router"]
